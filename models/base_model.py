@@ -46,12 +46,9 @@ class BaseModel:
         Returns a dictionary containing all keys/values
         of __dict__ of the instance including new attrs
         """
-        obj_dict = {}
+        obj_dict = self.__dict__.copy()
         obj_dict['__class__'] = self.__class__.__name__
-        self.__dict__['created_at'] = (datetime.isoformat(
-                                        self.__dict__.get('created_at')))
-        self.__dict__['updated_at'] = (datetime.isoformat(
-                                        self.__dict__.get('updated_at')))
-        self.__dict__.update(obj_dict)
-        return self.__dict__
+        obj_dict['created_at'] = self.created_at.isoformat()
+        obj_dict['updated_at'] = self.updated_at.isoformat()
+        return obj_dict
 
