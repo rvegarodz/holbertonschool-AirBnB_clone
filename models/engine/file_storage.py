@@ -16,16 +16,16 @@ class FileStorage:
         return self.__objects
 
     def new(self, obj):
-        key_nm = f"{obj.__class__.__name__}.id"
+        key_nm = f"{obj.__class__.__name__}.{obj.id}"
         self.__objects[key_nm] = obj
 
     def save(self):
         with open(self.__file_path, "w") as file:
-            file.write(json.dumps(self.__objects))
+            json.dump({k: v.to_dict() for k, v in self.__objects.items()}, file)
 
     def reload(self):
-        if path.exists(self.__file_path) is False:
+        if path.exists(self.__file_path) is True:
             pass
         else:
             with open(self.__file_path) as file:
-                self.__objects = json.load(file)
+                self.__objects = {k: BaseModel(**v) for k, v in json.load(file).items()}
