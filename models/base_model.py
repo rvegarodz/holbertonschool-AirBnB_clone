@@ -4,7 +4,7 @@ BaseModel class module
 """
 from uuid import uuid4
 from datetime import datetime
-
+import models
 
 class BaseModel:
     """
@@ -40,7 +40,9 @@ class BaseModel:
         Changes the time of instance attrs change
         """
         self.updated_at = datetime.now()
-
+        models.storage.save()
+        models.storage.new()
+        
     def to_dict(self):
         """
         Returns a dictionary containing all keys/values
