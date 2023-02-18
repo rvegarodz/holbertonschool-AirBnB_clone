@@ -25,19 +25,19 @@ class BaseModel:
             for keys, value in kwargs.items():
                 if keys in ['created_at', 'updated_at']:
                     self.__dict__[keys] = datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%f')
-                elif keys != __class__:
+                elif keys != '__class__':
                     self.__dict__[keys] = value
         else:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
-            self.updated_at = datetime.now()
+            self.updated_at = self.created_at
             models.storage.new(self)
 
     def __str__(self):
         """
         Returns string representation of instance
         """
-        return f'[{self.__class__.__name__}] ({self.id}) {self.__dict__}'
+        return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
 
     def save(self):
         """
