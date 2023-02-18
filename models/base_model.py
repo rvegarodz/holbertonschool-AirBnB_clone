@@ -2,9 +2,10 @@
 """
 BaseModel class module
 """
-from uuid import uuid4
+import uuid
 from datetime import datetime
 import models
+
 
 class BaseModel:
     """
@@ -22,16 +23,15 @@ class BaseModel:
         """
         if kwargs:
             for keys, value in kwargs.items():
-                if keys != __class__:
-                    if keys in ['created_at', 'updated_at']:
-                        self.__dict__[keys] = datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%f')
-                    else:
-                        self.__dict__[keys] = value
+                if keys in ['created_at', 'updated_at']:
+                    self.__dict__[keys] = (datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%f'))
+                elif keys != __class__:
+                    self.__dict__[keys] = value
         else:
-            self.id = str(uuid4())
+            self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
-            self.updated_at = self.created_at
-        models.storage.new(self)
+            self.updated_at = datetime.now()
+            models.storage.new(self)
 
     def __str__(self):
         """
@@ -45,7 +45,7 @@ class BaseModel:
         """
         self.updated_at = datetime.now()
         models.storage.save()
-        
+
     def to_dict(self):
         """
         Returns a dictionary containing all keys/values
@@ -53,6 +53,6 @@ class BaseModel:
         """
         obj_dict = self.__dict__.copy()
         obj_dict['__class__'] = self.__class__.__name__
-        obj_dict['created_at'] = datetime.isoformat(self.updated_at)
-        obj_dict['updated_at'] = datetime.isoformat(self.created_at)
+        obj_dict['created_at'] = self.created_at.isoformat()
+        obj_dict['updated_at'] = self.updated_at.isoformat()
         return obj_dict
