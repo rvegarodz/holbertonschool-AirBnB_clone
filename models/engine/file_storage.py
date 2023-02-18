@@ -22,16 +22,13 @@ class FileStorage:
 
     def save(self):
         """Serializes __objects to JSON file"""
-        with open(self.__file_path, "w", encoding='utf-8') as file:
-            for k, v in self.__objects.items():
-                self.__objects[k] = v.to_dict()
-            json.dump(self.__objects, file)
+        with open(self.__file_path, "w+", encoding='utf-8') as file:
+            json.dump({k: v.to_dict() for k, v in self.__objects.items()}, f)
 
     def reload(self):
         """Deserializes the JSON file to __objects"""
         try:
             with open(self.__file_path, encoding='utf-8') as file:
-                    for k, v in json.load(file).items():
-                        self.__objects[k] = BaseModel(**v)
+                self.__objects = {k: BaseModel(**v) for k, v in json.load(f).items()}
         except Exception:
             pass
