@@ -21,9 +21,12 @@ class BaseModel:
                 updated_at: date of instance attrs change
         """
         if kwargs:
-            for keys in kwargs:
+            for keys, value in kwargs.items():
                 if keys != __class__:
-                    self.__dict__[keys] = kwargs[keys]
+                    if keys in ['created_at', 'updated_at']:
+                        self.__dict__[keys] = datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%f')
+                    else:
+                        self.__dict__[keys] = value
         else:
             self.id = str(uuid4())
             self.created_at = datetime.now()
@@ -50,10 +53,6 @@ class BaseModel:
         """
         obj_dict = self.__dict__.copy()
         obj_dict['__class__'] = self.__class__.__name__
-        if type(self.updated_at) is not str:
-            obj_dict['created_at'] = datetime.isoformat(self.updated_at)
-        if type(self.created_at) is not str:
-            obj_dict['updated_at'] = datetime.isoformat(self.created_at)
+        obj_dict['created_at'] = datetime.isoformat(self.updated_at)
+        obj_dict['updated_at'] = datetime.isoformat(self.created_at)
         return obj_dict
-
-#2023-02-18T10:44:10.497797
