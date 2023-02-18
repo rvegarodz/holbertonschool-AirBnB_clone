@@ -53,6 +53,6 @@ class BaseModel:
         """
         obj_dict = self.__dict__.copy()
         obj_dict['__class__'] = self.__class__.__name__
-        obj_dict['created_at'] = datetime.isoformat(self.updated_at)
-        obj_dict['updated_at'] = datetime.isoformat(self.created_at)
+        obj_dict['created_at'] = datetime.isoformat(self.created_at)
+        obj_dict['updated_at'] = datetime.isoformat(self.updated_at)
         return obj_dict
