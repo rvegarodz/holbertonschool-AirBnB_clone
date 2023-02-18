@@ -7,7 +7,6 @@ import cmd
 
 class HBNBCommand(cmd.Cmd):
     prompt = '(hbnb) '
-    file = None
 
     def do_quit(self, arg):
         'Quit command to exit the program\n'
@@ -22,6 +21,9 @@ class HBNBCommand(cmd.Cmd):
         self.close()
         print()
         quit()
+    
+    def emptyline(self):
+        pass
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
