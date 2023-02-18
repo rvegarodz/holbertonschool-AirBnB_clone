@@ -4,7 +4,7 @@ import json
 from models.base_model import BaseModel
 
 
-class FileStorage:
+class FileStorage():
     """Class that serializes and deserializes"""
     
     __file_path = "file.json"
