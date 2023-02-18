@@ -20,12 +20,13 @@ class FileStorage:
         self.__objects[key_nm] = obj
 
     def save(self):
-        with open(self.__file_path, "w") as file:
-            json.dump({k: v.to_dict() for k, v in self.__objects.items()}, file)
+        with open(self.__file_path, "w+", encoding='utf-8') as file:
+            self.__objects = {k: v.to_dict() for k, v in self.__objects.items()}
+            json.dump(self.__objects, file)
 
     def reload(self):
-        if path.exists(self.__file_path) is True:
+        try:
+            with open(self.__file_path, encoding='utf-8') as file:
+                    self.__objects = {k: BaseModel(**v) for k, v in json.load(file).items()}
+        except Exception:
             pass
-        else:
-            with open(self.__file_path) as file:
-                self.__objects = {k: BaseModel(**v) for k, v in json.load(file).items()}
