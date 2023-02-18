@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 """COMMENT"""
-
 import json
 from models.base_model import BaseModel
 
