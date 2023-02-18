@@ -29,7 +29,7 @@ class FileStorage():
     def reload(self):
         """Deserializes the JSON file to __objects"""
         try:
-            with open(self.__file_path, encoding='utf-8') as file:
+            with open(self.__file_path, "r", encoding='utf-8') as file:
                 for k, v in json.load(file).items():
                     self.__objects[k] = BaseModel(**v)
         except Exception:
