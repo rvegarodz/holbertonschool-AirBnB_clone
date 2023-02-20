@@ -68,9 +68,18 @@ class HBNBCommand(cmd.Cmd):
 
     def do_all(self, arg):
         if not arg:
+            instance_list = []
+            instance_str = ""
+            i = 0
+            length_storage = len(storage.all())
             for instance in storage.all():
-                print(storage.all()[instance])
-            return
+                instance_str += f'{storage.all()[instance]}'
+                if instance_str.endswith("}") and i < length_storage - 1:
+                    instance_str += ", "
+                i += 1
+            instance_list.append(instance_str)
+            print(instance_list)
+            return 
         try:
             name_class = eval(arg).__name__
         except Exception:
@@ -83,6 +92,9 @@ class HBNBCommand(cmd.Cmd):
             for instance in storage.all():
                 if instance.startswith(name_class + "."):
                    instance_str += f'{storage.all()[instance]}'
+                   if instance_str.endswith("}") and i < length_storage - 1:
+                    instance_str += ", "
+                i += 1
             instance_list.append(instance_str)
             print(instance_list)
             return
