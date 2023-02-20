@@ -43,16 +43,16 @@ class HBNBCommand(cmd.Cmd):
             print('** class name missing **')
             return
         instance = arg.split()
+        try:
+            class_name = eval(instance[0]).__name__
+            pass
+        except Exception:
+            print('** class doesn\'t exist **')
         if len(instance) == 1:
             print('** instance id missing **')
             return
-        Base_id = f'{instance[0]}.{instance[1]}'
         try:
-            if storage.all()[Base_id]:
-                pass
-        except Exception:
-            print('** class doesn\'t exist **')
-        try:
+            Base_id = f'{instance[0]}.{instance[1]}'
             print(storage.all()[Base_id])
         except Exception:
             print("** no instance found **")
@@ -64,6 +64,11 @@ class HBNBCommand(cmd.Cmd):
             return
         
         instance = arg.split()
+        try:
+            class_name = eval(instance[0]).__name__
+        except Exception:
+            print('** class doesn\'t exist **')
+            return
         if len(instance) == 1:
             print('** instance id missing **')
             return
@@ -104,10 +109,22 @@ class HBNBCommand(cmd.Cmd):
         if arg:
             """Something pass"""
             input_args = arg.split()
+            try:
+                class_name = eval(input_args[0]).__name__
+            except Exception:
+                print('** class doesn\'t exist **')
+                return
             if len(input_args) == 1:
                 print("** instance id missing **")
                 return
-            elif len(input_args) == 2:
+            Base_id = f'{class_name}.{input_args[1]}'
+            try:
+                if storage.all()[Base_id]:
+                    pass
+            except Exception:
+                print("** no instance found **")
+                return
+            if len(input_args) == 2:
                 print("** attribute name missing **")
                 return
             elif len(input_args) == 3:
@@ -115,18 +132,6 @@ class HBNBCommand(cmd.Cmd):
                 return
             else:
                 """ Verifying and assiging class_name"""
-                try:
-                    class_name = eval(input_args[0]).__name__
-                except Exception:
-                    print('** class doesn\'t exist **')
-                    return
-                Base_id = f'{class_name}.{input_args[1]}'
-                try:
-                    if storage.all()[Base_id]:
-                        pass
-                except Exception:
-                    print("** no instance found **")
-                    return
                 """ Verifying and assiging atrb_name"""
                 Obj = storage.all()[Base_id]
                 if input_args[2] not in ['id', 'created_at', 'updated_at']:
