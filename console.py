@@ -51,7 +51,7 @@ class HBNBCommand(cmd.Cmd):
             if storage.all()[Base_id]:
                 pass
         except Exception:
-            print('** class doesn\'nt exist **')
+            print('** class doesn\'t exist **')
         try:
             print(storage.all()[Base_id])
         except Exception:
