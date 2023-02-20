@@ -121,9 +121,10 @@ class HBNBCommand(cmd.Cmd):
                     return
                 """ Verifying and assiging atrb_name"""
                 Obj = storage.all()[Base_id]
-                new_attr = {str(input_args[2]): input_args[3]}
-                Obj.__dict__.update(new_attr)
-                Obj.save()
+                if input_args[2] not in ['id', 'created_at', 'updated_at']:
+                    new_attr = {str(input_args[2]): input_args[3]}
+                    Obj.__dict__.update(new_attr)
+                    Obj.save()
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
