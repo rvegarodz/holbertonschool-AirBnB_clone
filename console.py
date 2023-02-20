@@ -46,8 +46,13 @@ class HBNBCommand(cmd.Cmd):
         if len(instance) == 1:
             print('** instance id missing **')
             return
+        Base_id = f'{instance[0]}.{instance[1]}'
         try:
-            Base_id = f'{instance[0]}.{instance[1]}'
+            if storage.all()[Base_id]:
+                pass
+        except Exception:
+            print('** class doesn\'nt exist **')
+        try:
             print(storage.all()[Base_id])
         except Exception:
             print("** no instance found **")
