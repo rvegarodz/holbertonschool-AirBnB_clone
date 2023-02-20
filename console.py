@@ -70,14 +70,9 @@ class HBNBCommand(cmd.Cmd):
         if not arg:
             instance_list = []
             instance_str = ""
-            i = 0
-            length_storage = len(storage.all())
             for instance in storage.all():
-                instance_str += f'{storage.all()[instance]}'
-                if instance_str.endswith("}") and i < length_storage - 1:
-                    instance_str += ", "
-                i += 1
-            instance_list.append(instance_str)
+                instance_str = f'{storage.all()[instance]}'
+                instance_list.append(instance_str)
             print(instance_list)
             return 
         try:
@@ -87,19 +82,12 @@ class HBNBCommand(cmd.Cmd):
         else:
             instance_list = []
             instance_str = ""
-            length_storage = len(storage.all())
-            i = 0
             for instance in storage.all():
                 if instance.startswith(name_class + "."):
-                   instance_str += f'{storage.all()[instance]}'
-                   if instance_str.endswith("}") and i < length_storage - 1:
-                    instance_str += ", "
-                i += 1
-            instance_list.append(instance_str)
+                   instance_str = f'{storage.all()[instance]}'
+                instance_list.append(instance_str)
             print(instance_list)
             return
-
-
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
