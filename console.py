@@ -36,6 +36,7 @@ class HBNBCommand(cmd.Cmd):
             print(new_instance.id)
         except Exception:
             print('** class doesn\'t exist **')
+            return
 
     def do_show(self, arg):
         if not arg:
@@ -50,6 +51,7 @@ class HBNBCommand(cmd.Cmd):
             print(storage.all()[Base_id])
         except Exception:
             print("** no instance found **")
+            return
 
     def do_destroy(self, arg):
         if not arg:
@@ -65,6 +67,7 @@ class HBNBCommand(cmd.Cmd):
             del(storage.all()[Base_id])
         except Exception:
             print('** no instance found **')
+            return
 
     def do_all(self, arg):
         if not arg:
