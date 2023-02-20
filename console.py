@@ -135,7 +135,12 @@ class HBNBCommand(cmd.Cmd):
                 """ Verifying and assiging atrb_name"""
                 Obj = storage.all()[Base_id]
                 if input_args[2] not in ['id', 'created_at', 'updated_at']:
-                    new_attr = {str(input_args[2]): input_args[3]}
+                    value = ""
+                    for i in range(3, len(input_args)):
+                        value += input_args[i]
+                        if i < len(input_args) - 1:
+                            value += " "
+                    new_attr = {str(input_args[2]): value}
                     Obj.__dict__.update(new_attr)
                     Obj.save()
 
