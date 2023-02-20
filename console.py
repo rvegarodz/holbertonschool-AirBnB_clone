@@ -88,6 +88,39 @@ class HBNBCommand(cmd.Cmd):
                 instance_list.append(instance_str)
             print(instance_list)
             return
+    
+    def do_update(self, arg):
+        if not arg:
+            print('** class name missing **')
+            return
+        if arg:
+            """Something pass"""
+            input_args = arg.split()
+            if len(input_args) == 3:
+                """ Verifying and assiging class_name"""
+                try:
+                    class_name = eval(input_args[0]).__name__
+                except Exception:
+                    print('** class doesn\'t exist **')
+                    return
+                Base_id = f'{class_name}.{input_args[1]}'
+                """ Verifying and assiging id"""
+                if storage.all()[Base_id]:
+                    id = input_args[1]
+                else:
+                    print('** no instance found **')
+                    return
+                """ Verifying and assiging atrb_name"""
+                if input_args[2] in storage.all()[Base_id].values():
+                     atrb_name = input_args[2]
+                else:
+                    print('** attribute name missing **')
+                    return
+                atrb_value = input_args[3]
+                storage.all()[Base_id].update({atrb_name: atrb_value})
+            if len(input_args) < 3:
+                print('** value missing **')
+                return
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
