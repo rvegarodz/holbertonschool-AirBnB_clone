@@ -48,6 +48,7 @@ class HBNBCommand(cmd.Cmd):
             pass
         except Exception:
             print('** class doesn\'t exist **')
+            return
         if len(instance) == 1:
             print('** instance id missing **')
             return
@@ -92,6 +93,7 @@ class HBNBCommand(cmd.Cmd):
             name_class = eval(arg).__name__
         except Exception:
             print('** class doesn\'t exist **')
+            return
         else:
             instance_list = []
             instance_str = ""
@@ -109,6 +111,7 @@ class HBNBCommand(cmd.Cmd):
         if arg:
             """Something pass"""
             input_args = arg.split()
+            print(input_args)
             try:
                 class_name = eval(input_args[0]).__name__
             except Exception:
@@ -145,12 +148,20 @@ class HBNBCommand(cmd.Cmd):
                         except ValueError:
                             value = ""
                             for i in range(3, len(input_args)):
-                                value += input_args[i]
+                                if input_args[i].startswith("\""):
+                                    value += input_args[i][1:]
+                                elif input_args[i].endswith("\""):
+                                    value += input_args[i][:-1]
+                                else:
+                                    value += input_args[i]
                                 if i < len(input_args) - 1:
                                     value += " "
                     new_attr = {str(input_args[2]): value}
                     Obj.__dict__.update(new_attr)
                     Obj.save()
+                    return
+                else:
+                    return
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
