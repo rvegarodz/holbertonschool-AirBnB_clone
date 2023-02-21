@@ -12,5 +12,6 @@ class State(BaseModel):
     name = ""
 
     def __init__(self, *args, **kwargs):
+        """State instance creation"""
         super().__init__(*args, **kwargs)
         self.name = ""

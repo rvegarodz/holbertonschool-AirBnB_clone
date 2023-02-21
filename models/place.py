@@ -1,9 +1,6 @@
 #!/usr/bin/python3
 """Module provide User class"""
 from models.base_model import BaseModel
-from models.city import City
-from models.user import User
-from models.amenity import Amenity
 
 
 class Place(BaseModel):
@@ -22,6 +19,7 @@ class Place(BaseModel):
 
 
     def __init__(self, *args, **kwargs):
+        """Place instance creation"""
         super().__init__(*args, **kwargs)    
         self.city_id = ""
         self.user_id = ""
