@@ -18,13 +18,13 @@ class Place(BaseModel):
     price_by_night = 0
     latitude = 0.0
     longitude = 0.0
-    amenity_ids = [""]
+    amenity_ids = []
 
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)    
-        self.city_id = City.id
-        self.user_id = User.id
+        self.city_id = ""
+        self.user_id = ""
         self.name = ""
         self.description = ""
         self.number_rooms = 0
@@ -33,4 +33,4 @@ class Place(BaseModel):
         self.price_by_night = 0
         self.latitude = 0.0
         self.longitude = 0.0
-        self.amenity_ids = Amenity.id
+        self.amenity_ids = []
