@@ -5,6 +5,7 @@ Entry point of the command interpreter
 import cmd
 from models.base_model import BaseModel
 from models import storage
+from models.user import User
 
 
 class HBNBCommand(cmd.Cmd):
@@ -48,6 +49,7 @@ class HBNBCommand(cmd.Cmd):
             pass
         except Exception:
             print('** class doesn\'t exist **')
+            return
         if len(instance) == 1:
             print('** instance id missing **')
             return
@@ -75,6 +77,7 @@ class HBNBCommand(cmd.Cmd):
         try:
             Base_id = f'{instance[0]}.{instance[1]}'
             del(storage.all()[Base_id])
+            storage.save()
         except Exception:
             print('** no instance found **')
             return
@@ -92,6 +95,7 @@ class HBNBCommand(cmd.Cmd):
             name_class = eval(arg).__name__
         except Exception:
             print('** class doesn\'t exist **')
+            return
         else:
             instance_list = []
             instance_str = ""
@@ -131,13 +135,35 @@ class HBNBCommand(cmd.Cmd):
                 print("** value missing **")
                 return
             else:
-                """ Verifying and assiging class_name"""
-                """ Verifying and assiging atrb_name"""
                 Obj = storage.all()[Base_id]
                 if input_args[2] not in ['id', 'created_at', 'updated_at']:
-                    new_attr = {str(input_args[2]): input_args[3]}
+                    try:
+                        int_arg = int(input_args[3])
+                        value = int_arg
+                    except ValueError:
+                        try:
+                            float_arg = float(input_args[3])
+                            value = float_arg
+                        except ValueError:
+                            value = ""
+                            for i in range(3, len(input_args)):
+                                if (input_args[i].startswith("\"") 
+                                    and input_args[i].endswith("\"")):
+                                    value += input_args[i][1:-1]
+                                elif input_args[i].startswith("\""):
+                                    value += input_args[i][1:]
+                                elif input_args[i].endswith("\""):
+                                    value += input_args[i][:-1]
+                                else:
+                                    value += input_args[i]
+                                if i < len(input_args) - 1:
+                                    value += " "
+                    new_attr = {str(input_args[2]): value}
                     Obj.__dict__.update(new_attr)
                     Obj.save()
+                    return
+                else:
+                    return
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
