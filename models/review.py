@@ -1,10 +1,10 @@
 #!/usr/bin/python3
-"""Module provide User class"""
+"""Module provide Review class"""
 from models.base_model import BaseModel
 from models.place import Place
 
-class User(BaseModel):
-    """User class that inherits from BaseModel"""
+class Review(BaseModel):
+    """Review class that inherits from BaseModel"""
     place_id = ""
     user_id = ""
     text = ""
