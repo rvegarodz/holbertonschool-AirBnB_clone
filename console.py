@@ -76,6 +76,7 @@ class HBNBCommand(cmd.Cmd):
         try:
             Base_id = f'{instance[0]}.{instance[1]}'
             del(storage.all()[Base_id])
+            storage.save()
         except Exception:
             print('** no instance found **')
             return
