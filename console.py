@@ -69,7 +69,7 @@ class HBNBCommand(cmd.Cmd):
         if not arg:
             print('** class name missing **')
             return
-        
+
         instance = arg.split()
         try:
             class_name = eval(instance[0]).__name__
@@ -81,7 +81,7 @@ class HBNBCommand(cmd.Cmd):
             return
         try:
             Base_id = f'{instance[0]}.{instance[1]}'
-            del(storage.all()[Base_id])
+            del (storage.all()[Base_id])
             storage.save()
         except Exception:
             print('** no instance found **')
@@ -95,7 +95,7 @@ class HBNBCommand(cmd.Cmd):
                 instance_str = f'{storage.all()[instance]}'
                 instance_list.append(instance_str)
             print(instance_list)
-            return 
+            return
         try:
             name_class = eval(arg).__name__
         except Exception:
@@ -106,11 +106,11 @@ class HBNBCommand(cmd.Cmd):
             instance_str = ""
             for instance in storage.all():
                 if instance.startswith(name_class + "."):
-                   instance_str = f'{storage.all()[instance]}'
+                    instance_str = f'{storage.all()[instance]}'
                 instance_list.append(instance_str)
             print(instance_list)
             return
-    
+
     def do_update(self, arg):
         if not arg:
             print('** class name missing **')
@@ -152,8 +152,8 @@ class HBNBCommand(cmd.Cmd):
                         except ValueError:
                             value = ""
                             for i in range(3, len(input_args)):
-                                if (input_args[i].startswith("\"") 
-                                    and input_args[i].endswith("\"")):
+                                if (input_args[i].startswith("\"")
+                                   and input_args[i].endswith("\"")):
                                     value += input_args[i][1:-1]
                                 elif input_args[i].startswith("\""):
                                     value += input_args[i][1:]
@@ -169,6 +169,7 @@ class HBNBCommand(cmd.Cmd):
                     return
                 else:
                     return
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
