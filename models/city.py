@@ -3,7 +3,6 @@
 Module with Class City
 """
 from models.base_model import BaseModel
-from models.state import State
 
 
 class City(BaseModel):
@@ -14,6 +13,7 @@ class City(BaseModel):
     name = ""
     
     def __init__(self, *args, **kwargs):
+        """City instance creation"""
         super().__init__(*args, **kwargs)
         self.state_id = ""
         self.name = ""
