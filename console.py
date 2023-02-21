@@ -5,6 +5,7 @@ Entry point of the command interpreter
 import cmd
 from models.base_model import BaseModel
 from models import storage
+from models.user import User
 
 
 class HBNBCommand(cmd.Cmd):
@@ -112,7 +113,6 @@ class HBNBCommand(cmd.Cmd):
         if arg:
             """Something pass"""
             input_args = arg.split()
-            print(input_args)
             try:
                 class_name = eval(input_args[0]).__name__
             except Exception:
@@ -135,8 +135,6 @@ class HBNBCommand(cmd.Cmd):
                 print("** value missing **")
                 return
             else:
-                """ Verifying and assiging class_name"""
-                """ Verifying and assiging atrb_name"""
                 Obj = storage.all()[Base_id]
                 if input_args[2] not in ['id', 'created_at', 'updated_at']:
                     try:
@@ -149,7 +147,10 @@ class HBNBCommand(cmd.Cmd):
                         except ValueError:
                             value = ""
                             for i in range(3, len(input_args)):
-                                if input_args[i].startswith("\""):
+                                if (input_args[i].startswith("\"") 
+                                    and input_args[i].endswith("\"")):
+                                    value += input_args[i][1:-1]
+                                elif input_args[i].startswith("\""):
                                     value += input_args[i][1:]
                                 elif input_args[i].endswith("\""):
                                     value += input_args[i][:-1]
