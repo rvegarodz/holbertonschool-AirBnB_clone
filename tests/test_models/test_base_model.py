@@ -1,12 +1,12 @@
 import unittest
-import io 
+import io
 import unittest.mock
 from models.base_model import BaseModel
 
 
 class TestBaseModel(unittest.TestCase):
     """Test Base Model class"""
-    
+
     def test_init(self):
         """Test init method"""
         obj_1 = BaseModel()
@@ -42,6 +42,7 @@ class TestBaseModel(unittest.TestCase):
             'created_at': obj.created_at.isoformat(),
             'updated_at': obj.updated_at.isoformat()}
         self.assertDictEqual(a_dict, obj_dict)
+
 
 if __name__ == '__main__':
     unittest.main()

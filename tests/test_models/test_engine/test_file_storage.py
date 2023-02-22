@@ -5,12 +5,11 @@ from models.engine.file_storage import FileStorage
 
 class TestFileStorage(unittest.TestCase):
     """Test class for File Storage"""
-            
+
     def test_all(self):
         """Test class method named all"""
         storage = FileStorage()
         all_objs = storage.all()
-        #Testing __objects dict at the beginning 
         self.assertEqual(all_objs, {})
         storage = FileStorage()
         obj1 = BaseModel()
@@ -18,7 +17,6 @@ class TestFileStorage(unittest.TestCase):
         obj1.save()
         obj2.save()
         all_objects_reloaded = storage.reload()
-        #Testing __objects dict at the beginning 
         self.assertNotEqual(all_objects_reloaded, all_objs)
 
     def test_new(self):
@@ -35,7 +33,6 @@ class TestFileStorage(unittest.TestCase):
         var = storage.all()[obj_name]
         self.assertNotEqual(obj1, var)
 
-
     def test_save(self):
         """Test class method named save"""
         obj2 = BaseModel()
@@ -49,7 +46,6 @@ class TestFileStorage(unittest.TestCase):
         self.assertIn("My_Second_Model", obj2.__dict__.values())
         self.assertNotIn("My_First_Model", obj2.__dict__.values())
 
-
     def test_reload(self):
         """Test class method named reload"""
         storage = FileStorage()
@@ -58,7 +54,7 @@ class TestFileStorage(unittest.TestCase):
         obj2 = BaseModel()
         obj1.save()
         obj2.save()
-        all_objects_reloaded = storage.reload() 
+        all_objects_reloaded = storage.reload()
         self.assertNotEqual(all_objects_reloaded, all_objs)
 
 
