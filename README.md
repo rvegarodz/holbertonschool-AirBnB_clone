@@ -70,7 +70,7 @@ After executing The Console, you can use it with the following commands:
     (hbnb) update User ac3e0b8f-470a-4a11-93f0-2122a3ae2604 name "Rafael Vega"
     ["[User] (ac3e0b8f-470a-4a11-93f0-2122a3ae2604) {'id': 'ac3e0b8f-470a-4a11-93f0-2122a3ae2604', 'created_at': datetime.datetime(2023, 2, 21, 18, 32, 0, 120526), 'updated_at': datetime.datetime(2023, 2, 21, 18, 32, 0, 120540), 'name': 'Rafael Vega'}"]
     (hbnb) quit
-    terminal@My_laptop:$ ./console.py
+    terminal@My_laptop:$
 
 ## Credits
 
