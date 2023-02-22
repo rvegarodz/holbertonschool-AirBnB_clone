@@ -33,6 +33,7 @@ class HBNBCommand(cmd.Cmd):
         pass
 
     def do_create(self, arg):
+        """Creates a new object and saves it to a JSON file."""
         if not arg:
             print('** class name missing **')
             return
@@ -45,6 +46,7 @@ class HBNBCommand(cmd.Cmd):
             return
 
     def do_show(self, arg):
+        """Displays the details of an existing object."""
         if not arg:
             print('** class name missing **')
             return
@@ -66,6 +68,7 @@ class HBNBCommand(cmd.Cmd):
             return
 
     def do_destroy(self, arg):
+        """Deletes an existing object."""
         if not arg:
             print('** class name missing **')
             return
@@ -88,6 +91,7 @@ class HBNBCommand(cmd.Cmd):
             return
 
     def do_all(self, arg):
+        """Displays a list of all existing objects."""
         if not arg:
             instance_list = []
             instance_str = ""
@@ -112,6 +116,7 @@ class HBNBCommand(cmd.Cmd):
             return
 
     def do_update(self, arg):
+        """Updates the attributes of an existing object."""
         if not arg:
             print('** class name missing **')
             return
