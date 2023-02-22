@@ -1,9 +1,4 @@
 import unittest
-import io 
-import unittest.mock
-from datetime import datetime
-from models.base_model import BaseModel
-from models.engine.file_storage import FileStorage
 from models.user import User
 
 
@@ -18,21 +13,21 @@ class TestUser(unittest.TestCase):
         self.assertEqual(obj.email, "gabrielitotititotitito")
 
     def test_password(self):
-        """Test class attributes named email"""
+        """Test class attributes named password"""
         obj = User()
         self.assertEqual(obj.password, "")
         obj.password = "gabrielitotititotitito"
         self.assertEqual(obj.password, "gabrielitotititotitito")
 
     def test_first_name(self):
-        """Test class attributes named email"""
+        """Test class attributes named first name"""
         obj = User()
         self.assertEqual(obj.first_name, "")
         obj.first_name = "gabrielitotititotitito"
         self.assertEqual(obj.first_name, "gabrielitotititotitito")
 
-    def test_email(self):
-        """Test class attributes named email"""
+    def test_last_name(self):
+        """Test class attributes named last name"""
         obj = User()
         self.assertEqual(obj.last_name, "")
         obj.last_name = "gabrielitotititotitito"
