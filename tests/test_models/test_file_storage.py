@@ -23,9 +23,9 @@ class TestBaseModel2(unittest.TestCase):
         obj2 = BaseModel()
         obj1.save()
         obj2.save()
-        all_objects = storage.reload()
+        all_objects_reloaded = storage.reload()
         #Testing __objects dict at the beginning 
-        self.assertNotEqual(all_objects, storage.all())
+        self.assertNotEqual(all_objects_reloaded, all_objs)
 
 
     def test_save(self):
