@@ -46,6 +46,18 @@ class TestBaseModel2(unittest.TestCase):
         for key, value in all_objs1.items():
             if obj2.name == value:
                 self.assertIn(obj2.name, key.values())
+
+    def test_reload(self):
+        """Doc reload test"""
+        storage = FileStorage()
+        all_objs = storage.all()
+        obj1 = BaseModel()
+        obj2 = BaseModel()
+        obj1.save()
+        obj2.save()
+        all_objects_reloaded = storage.reload()
+        #Testing __objects dict at the beginning 
+        self.assertNotEqual(all_objects_reloaded, all_objs)
     
 
 if __name__ == '__main__':
