@@ -48,6 +48,7 @@ class TestBaseModel2(unittest.TestCase):
                 self.assertIn(obj2.name, key.values())
 
     def test_reload(self):
+        """Doc reload test"""
         storage = FileStorage()
         all_objs = storage.all()
         obj1 = BaseModel()
