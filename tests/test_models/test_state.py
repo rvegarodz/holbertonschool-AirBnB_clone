@@ -5,7 +5,6 @@ from models.state import State
 class TestCity(unittest.TestCase):
     """Test for class State"""
 
-
     def test_name(self):
         """Test class attributes named name"""
         obj = State()
