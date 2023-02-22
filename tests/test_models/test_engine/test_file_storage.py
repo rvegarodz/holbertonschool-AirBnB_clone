@@ -1,19 +1,13 @@
 import unittest
 from models.base_model import BaseModel
-import io 
-import unittest.mock
-from datetime import datetime
-import os
-
 from models.engine.file_storage import FileStorage
 
 
 class TestFileStorage(unittest.TestCase):
-    """
-    Test class for File Storage
-    """
+    """Test class for File Storage"""
             
     def test_all(self):
+        """Test class method named all"""
         storage = FileStorage()
         all_objs = storage.all()
         #Testing __objects dict at the beginning 
@@ -27,9 +21,8 @@ class TestFileStorage(unittest.TestCase):
         #Testing __objects dict at the beginning 
         self.assertNotEqual(all_objects_reloaded, all_objs)
 
-
-
     def test_new(self):
+        """Test class method named new"""
         storage = FileStorage()
         obj1 = BaseModel()
         storage.new(obj1)
@@ -44,7 +37,7 @@ class TestFileStorage(unittest.TestCase):
 
 
     def test_save(self):
-        storage = FileStorage()
+        """Test class method named save"""
         obj2 = BaseModel()
         obj2.name = "My_First_Model"
         obj2.my_number = 89
@@ -58,17 +51,16 @@ class TestFileStorage(unittest.TestCase):
 
 
     def test_reload(self):
-        """Doc reload test"""
+        """Test class method named reload"""
         storage = FileStorage()
         all_objs = storage.all()
         obj1 = BaseModel()
         obj2 = BaseModel()
         obj1.save()
         obj2.save()
-        all_objects_reloaded = storage.reload()
-        #Testing __objects dict at the beginning 
+        all_objects_reloaded = storage.reload() 
         self.assertNotEqual(all_objects_reloaded, all_objs)
-    
+
 
 if __name__ == '__main__':
     unittest.main()

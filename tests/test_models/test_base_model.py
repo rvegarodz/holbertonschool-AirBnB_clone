@@ -1,17 +1,14 @@
 import unittest
 import io 
 import unittest.mock
-from datetime import datetime
 from models.base_model import BaseModel
-from models.engine.file_storage import FileStorage
 
 
 class TestBaseModel(unittest.TestCase):
-    """
-    Test Base Model class
-    """
+    """Test Base Model class"""
     
     def test_init(self):
+        """Test init method"""
         obj_1 = BaseModel()
         self.assertIsNotNone(obj_1.id)
         self.assertIsNotNone(obj_1.created_at)
@@ -19,20 +16,24 @@ class TestBaseModel(unittest.TestCase):
 
     @unittest.mock.patch('sys.stdout', new_callable=io.StringIO)
     def assert_stdout(self, expected_output, obj, mock_stdout):
+        """Initializing auxiliar method"""
         print(obj)
         self.assertEqual(mock_stdout.getvalue(), expected_output)
 
     def test_str(self):
+        """Test str method"""
         obj = BaseModel()
         obj_str = f'[{obj.__class__.__name__}] ({obj.id}) {obj.__dict__}\n'
         self.assert_stdout(obj_str, obj)
 
     def test_save(self):
+        """Test save method"""
         obj = BaseModel()
         obj.save()
         self.assertNotEqual(obj.created_at, obj.updated_at)
 
     def test_to_dict(self):
+        """Test to_dict method"""
         obj = BaseModel()
         a_dict = obj.to_dict()
         obj_dict = {
