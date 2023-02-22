@@ -28,6 +28,14 @@ class TestBaseModel2(unittest.TestCase):
         self.assertNotEqual(all_objects_reloaded, all_objs)
 
 
+    def test_new(self):
+        storage = FileStorage()
+        obj1 = BaseModel()
+        storage.new(obj1)
+        obj_name = f'BaseModel.{obj1.id}'
+        var = storage.all()[obj_name]
+        self.assertEqual(obj1, var)
+
     def test_save(self):
         storage = FileStorage()
         all_objs1 = storage.all()
@@ -35,10 +43,10 @@ class TestBaseModel2(unittest.TestCase):
         obj2.name = "My_First_Model"
         obj2.my_number = 89
         obj2.save()
-
         for key, value in all_objs1.items():
-            if obj2.name in value:
-                self.assertIn(obj2.name, key.values()) 
+            if obj2.name == value:
+                self.assertIn(obj2.name, key.values())
+    
 
 if __name__ == '__main__':
     unittest.main()
