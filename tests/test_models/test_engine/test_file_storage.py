@@ -8,9 +8,9 @@ import os
 from models.engine.file_storage import FileStorage
 
 
-class TestBaseModel2(unittest.TestCase):
+class TestFileStorage(unittest.TestCase):
     """
-    Test Base Model class
+    Test class for File Storage
     """
             
     def test_all(self):
