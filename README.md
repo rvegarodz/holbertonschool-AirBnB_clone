@@ -43,8 +43,43 @@ After executing The Console, you can use it with the following commands:
 
 ### Examples:
 
-here goes the examples!!!!!!!!!!!!!!!!!!!!!!!!!!!
+terminal@My_laptop:$ ./console.py
+(hbnb) help
+
+Documented commands (type help <topic>):
+========================================
+EOF  help  quit
+
+Undocumented commands:
+======================
+all  create  destroy  show  update
+
+(hbnb) help EOF
+EOF command to exit the program
+(hbnb) help quit
+Quit command to exit the program
+
+(hbnb) create BaseModel
+3f56505c-c566-4969-aa8e-1c913fb9d7a6
+(hbnb)
+(hbnb) show BaseModel 3f56505c-c566-4969-aa8e-1c913fb9d7a6
+[BaseModel] (3f56505c-c566-4969-aa8e-1c913fb9d7a6) {'id': '3f56505c-c566-4969-aa8e-1c913fb9d7a6', 'created_at': datetime.datetime(2023, 2, 21, 18, 25, 26, 869079), 'updated_at': datetime.datetime(2023, 2, 21, 18, 25, 26, 869106)}
+(hbnb)
+(hbnb) destroy BaseModel 3f56505c-c566-4969-aa8e-1c913fb9d7a6
+(hbnb) show BaseModel 3f56505c-c566-4969-aa8e-1c913fb9d7a6
+** no instance found **
+(hbnb) create User
+ac3e0b8f-470a-4a11-93f0-2122a3ae2604
+(hbnb) all 
+["[BaseModel] (8f37e7e1-2b6e-4e3a-b5ca-505dcac8ef0f) {'id': '8f37e7e1-2b6e-4e3a-b5ca-505dcac8ef0f', 'created_at': datetime.datetime(2023, 2, 21, 18, 31, 28, 998945), 'updated_at': datetime.datetime(2023, 2, 21, 18, 31, 28, 998967)}", "[User] (ac3e0b8f-470a-4a11-93f0-2122a3ae2604) {'id': 'ac3e0b8f-470a-4a11-93f0-2122a3ae2604', 'created_at': datetime.datetime(2023, 2, 21, 18, 32, 0, 120526), 'updated_at': datetime.datetime(2023, 2, 21, 18, 32, 0, 120540)}"]
+(hbnb)
+(hbnb) all BaseModel
+["[BaseModel] (8f37e7e1-2b6e-4e3a-b5ca-505dcac8ef0f) {'id': '8f37e7e1-2b6e-4e3a-b5ca-505dcac8ef0f', 'created_at': datetime.datetime(2023, 2, 21, 18, 31, 28, 998945), 'updated_at': datetime.datetime(2023, 2, 21, 18, 31, 28, 998967)}"]
+(hbnb)
+(hbnb) update User ac3e0b8f-470a-4a11-93f0-2122a3ae2604 name "Rafael Vega"
+["[User] (ac3e0b8f-470a-4a11-93f0-2122a3ae2604) {'id': 'ac3e0b8f-470a-4a11-93f0-2122a3ae2604', 'created_at': datetime.datetime(2023, 2, 21, 18, 32, 0, 120526), 'updated_at': datetime.datetime(2023, 2, 21, 18, 32, 0, 120540), 'name': 'Rafael Vega'}"]
+(hbnb)
 
 ## Credits
 
-This project was developed by Gabriel Pagan Mateo and Rafael O. Vega Rodriguez as the Holberton School curriculum.
+This project was developed by Gabriel Pagan Mateo and Rafael O. Vega Rodriguez for the Holberton School curriculum.
