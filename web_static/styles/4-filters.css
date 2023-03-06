@@ -10,23 +10,6 @@
  align-items: center;   
 }
 
-.filters h3 {
-    font-weight: 600;
-    line-height: 15px;
-}
-
-.filters h4 {
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 0px;
-}
-
-.filters h4,
-.filters h3 {
-    margin-left: 20%;
-    min-width: 150px;
-}
-
 .filters button {
     font-size: 18px;
     background-color: #ff5a5f;
@@ -37,17 +20,6 @@
     border-radius: 4px;
     margin-left: auto;
     margin-right: 3%;
-}
-
-.locations {
-    height: 100%;
-    width: 25%;
-    border-right: 1px #DDDDDD solid;
-}
-
-.amenities {
-    height: 100%;
-    width: 25%;
 }
 
 .filters button:hover {

@@ -13,16 +13,14 @@
 .filters h3 {
     font-weight: 600;
     line-height: 15px;
+    margin-left: 20%;
+    min-width: 150px;
 }
 
 .filters h4 {
     font-weight: 400;
     font-size: 14px;
     line-height: 0px;
-}
-
-.filters h4,
-.filters h3 {
     margin-left: 20%;
     min-width: 150px;
 }
