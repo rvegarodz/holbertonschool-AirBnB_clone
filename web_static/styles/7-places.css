@@ -1,17 +1,34 @@
 .places {
     display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto;
+    grid-row-gap: 5%;
+    grid-column-gap: 1px;
 }
 .places h1 {
     text-align: left;
     font-size: 30px; 
     padding-left: 1em;
+    grid-row: 1;
+    margin-bottom: 0;
 }
-
 .places article {
     border: 1px #FF5A5F solid;
     border-radius: 4px;
     width: 390px;
-    padding: 20px auto;
-    margin: 20px auto;
+    padding: 20px;
     text-align: center;
+    grid-row: 2;
+    justify-self: start;
+    margin-left: 5%;
+}
+.places article:first-of-type {
+    justify-self: center;
+    margin-left: 10%;
+}
+.places article:last-of-type {
+    grid-row: 3;
+    grid-column: 1 / 3;
+    justify-self: center;
+    margin-top: 2em;
 }
