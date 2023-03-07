@@ -57,6 +57,23 @@
 .price_by_night p {
     margin: auto;
 }
+.price_by_night_s {
+    font-size: 30px;
+    color: #FF5A5F;
+    border: 4px #FF5A5F solid;
+    border-radius: 50%;
+    min-width: 73px;
+    height: 73px;
+    grid-row: 1;
+    grid-column: 3;
+    grid-area: 60px;
+    justify-self: right;
+    display: grid;
+    align-items: center;
+}
+.price_by_night_s p {
+    margin: auto;
+}
 .information  {
     margin-top: 2em;
     border-top: 1px #DDDDDD solid;
